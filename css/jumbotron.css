@@ -1,0 +1,213 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+
+body { padding-top: 75px;  padding-bottom: 20px;}
+.ui-widget {font-size:0.9em;}
+.ui-menu { position: absolute; width: 180px; }
+label {margin-bottom:0;}
+
+.footer {color:#A9A9A9;}
+.ui-state-default.btn-primary { background:none; background-color: #428BCA; border-color: #357EBD; color: #FFFFFF;margin-left:50px;}
+.trans_target {min-height:150px;background:#deebf0;color:#222;margin-top:20px;padding:8px;padding-bottom:35px;}
+
+.ui-state-default.btn-primary:hover,
+.ui-state-default.btn-primary:focus,
+.ui-state-default.btn-primary:active,
+.ui-state-default.btn-primary.active {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+/*翻译领域css --start*/
+.lang_menu{
+	position: absolute;
+	background: #fff;
+	display: none;
+	top:40px;
+	left:16px ;
+	width:600px;
+	border:1px solid #d3d3d3;
+	background-color: #F4F9FF;
+	z-index:999;
+}
+div.lang_menu ul  {  
+	list-style:none; /* 去掉ul前面的符号 */  
+	margin: 0px; /* 与外界元素的距离为0 */  
+	padding: 0px; /* 与内部元素的距离为0 */  
+	width: auto; /* 宽度根据元素内容调整 */  
+}  
+/* 所有class为menu的div中的ul中的li样式 */  
+div.lang_menu ul li  
+{  
+	float:left; /* 向左漂移，将竖排变为横排 */  
+}  
+/* 所有class为menu的div中的ul中的a样式(包括尚未点击的和点击过的样式) */  
+div.lang_menu ul li a, div.lang_menu ul li a:visited  
+{  
+	background-color: #F4F9FF; /* 背景色 */  
+	/*border:1px solid #CAE3FF;*/ /* 边框 */  
+	color: #999999; /* 文字颜色 */  
+	display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */  
+	line-height: 1.35em; /* 行高 */  
+	padding: 4px 20px; /* 内部填充的距离 */  
+	text-decoration: none; /* 不显示超链接下划线 */  
+	white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */  
+}  
+/* 所有class为menu的div中的ul中的a样式(鼠标移动到元素中的样式) */  
+div.lang_menu ul li a:hover  
+{  
+	background-color: #8bd1db; /* 背景色 */  
+	color: #fff; /* 文字颜色 */  
+	text-decoration: none; /* 不显示超链接下划线 */  
+}  
+/* 所有class为menu的div中的ul中的a样式(鼠标点击元素时的样式) */  
+div.lang_menu ul li a:active  
+{  
+	/*background-color: #465c71;*/ /* 背景色 */  
+	background-color: #8bd1db;
+	color: #cfdbe6; /* 文字颜色 */  
+	text-decoration: none; /* 不显示超链接下划线 */  
+}  
+/*翻译领域css --end*/
+#gt-swap-disabled,#gt-swap{
+	clear:right;
+	float: right;
+	margin-right: -6px;
+}
+.swap-button-standard {
+	height: 27px;
+	line-height: 27px;
+ }
+.button-standard {
+	background-color: #f5f5f5;
+	color: #444;
+	border: 1px solid #dcdcdc;
+}
+		
+.jfk-button {
+	cursor: pointer;
+	text-align: center;
+	white-space: nowrap;
+	min-width: 54px;
+	outline: 0px;
+}
+.jfk-button-img {
+	display: inline-block;
+	overflow: hidden;
+}
+.jfk-button-img-swap{
+	display: inline-block;
+	overflow: hidden;
+}
+#upload_form {margin-top:10px;display:none;}
+#trans_target span {}
+.trans_target_highlight {background-color:#ffff00;border-radius:0.5em; cursor:pointer;padding:2px 3px;margin:-2px -3px;color:#000;}
+#trans_source {position:relative;}
+textarea.animated {margin:20px 0 10px;padding:8px;width:100%; height:150px;border:1px solid #dfdfdf;background:none;font-family: arial,sans-serif !important;}
+textarea.animated1 {margin:20px 0 10px;padding:8px;width:100%;*width:97%;height:150px;border:1px solid #dfdfdf;background:none;font-family: arial,sans-serif !important}
+.animated:hover {border-color:#ccc;}
+#source_layer {
+  background-color: #fff;
+  color: red;
+  /* for IE */
+ /* filter:alpha(opacity=60);*/
+  /* CSS3 standard */
+/*  opacity:0.6;*/
+  position: absolute; 
+  word-wrap: break-word;
+  z-index: -1;
+  -moz-box-sizing: content-box; width: 100%; min-height: 150px; left: 0px; top: 0px; padding: 9px; font-family: arial,sans-serif !important;}
+.trans_source_highlight {background-color:#ffff00;color:#ffff00; border-radius: 0.5em; margin: -2px -3px;padding: 2px 3px;}
+.col-lg-6 .ui-menu {z-index:1;}
+.notice {margin-top:20px;line-height:35px;width:100%;text-align:right;}
+#example {display:none;}
+
+#align-wrap {
+min-height:140px;
+margin-top:24px;
+margin-bottom:16px;
+border-radius:3px;
+border: 1px solid #d4d4d4;
+clear:both;
+}
+#align{ font: 16px/22px "Ubuntu Mono","Courier New",Mono; margin:0 auto;padding:8px; display:none;}
+.sentence { margin-bottom:24px; padding-top: 10px;}
+.sentence .line { 
+	margin-bottom:8px; 
+	width:100%;
+	padding:0px 2px;
+	background-color:#FFFFFF;
+ 	border-bottom: 1px dashed #CCCCCC;
+}
+
+span.hover {
+	color: #fff;
+	background: #5fbee5;
+}
+
+span.token {
+	margin-right: 8px;
+	cursor: pointer;
+	
+}
+
+span.tokenized_token {
+	cursor: pointer;
+}
+/*java css start*/
+
+.topnav{ float:left; margin:12px 32px; width:38%;}
+#tags { margin:0px; padding:0px;}
+	  
+
+#tags LI {
+	FLOAT: left;  LIST-STYLE-TYPE: none; HEIGHT: 26px; text-align:center; margin:0 12px; font-size:15px; font-family:微软雅黑;
+	color:#FFF;
+}
+#tags LI A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px;  FLOAT: left; PADDING-BOTTOM: 0px; COLOR: #fff; LINE-HEIGHT: 35px; PADDING-TOP: 0px; TEXT-DECORATION: none;height:38px;
+}
+
+
+#tags LI.emptyTag {
+	BACKGROUND: none transparent scroll repeat 0% 0%; WIDTH: 4px
+}
+#tags LI.selectTag {
+	BACKGROUND-POSITION: left top; MARGIN-BOTTOM: -2px; POSITION: relative; background:#fff
+}
+#tags LI.selectTag A {
+	BACKGROUND-POSITION: right top; COLOR: #000; LINE-HEIGHT: 27px; HEIGHT: 26px
+}
+#tagContent { text-align:center
+ }
+
+.tagContent {
+	 DISPLAY: none;   PADDING-BOTTOM: 10px; WIDTH: 100%; COLOR: #474747; PADDING-TOP: 20px;  text-align:left; height:auto; min-height:450px; _height:450px
+}
+#tagContent DIV.selectTag {
+	DISPLAY: block
+}
+ 
+.topuser{ margin:0px; padding:18px 0; float:right }
+.topuser ul{ margin:0px; padding:0px}
+.topuser ul li{ list-style:none; float:left; color:#FFFFFF;  margin:0 5px;font-size:13px}
+.topuser ul li a{ color:#FFFFFF; text-decoration:none; font-family:微软雅黑; margin:0px 5px}
+.arrow{
+	font-size:15px;
+	display:block;
+	float:left;
+	margin-top:4px;
+	width:72px;
+	text-align:center;
+	height:36px;
+	}
+/*java css end*/
+.output-copy{text-align: right;width: 120px;float: right;bottom:0%;right: 5%;position: absolute;}
+.trans-msg{position: absolute;padding-bottom:5px;color: #222;bottom:0%;margin-left:4px;}
+.warm-msg-text{color:red;font-size:14px;}
+/*0807*/
+@media screen and (max-width: 800px){
+.topnav {
+    display:none;
+}
+}

@@ -1,0 +1,166 @@
+/*!
+Translate function for GTC
+*/
+$(function() {
+	var trans_target_text = '';
+	$( "#radioset" ).buttonset();
+	$( "#radioset2" ).buttonset();
+	$('#select, #select2').button({
+	  text: false,
+	  icons: {
+		primary: "ui-icon-triangle-1-s"
+	  }	
+	})
+	.click(function() {
+	  var menu = $( this ).parent().next().show().position({
+		my: "left top",
+		at: "left bottom",
+		of: this
+	  });
+	  $( document ).one( "click", function() {
+		menu.hide();
+	  });
+	  return false;
+	})
+	.parent()
+	  .buttonset()
+	  .next()
+		.hide()
+		.menu();
+		
+	$('.animated').autosize({append: "\n"}).keyup(function(){
+		//$('#trans_btn').trigger('click');
+	});
+	$('#trans_btn').click(function(){
+		var _content = $('.animated').val();
+		if($.trim(_content)=='') return false; //输入内容为空就不处理
+		if(!$('input[name="from"]').is(':checked')
+			|| !$('input[name="to"]').is(':checked')) return false;
+		var _url = DATA_API;
+		var _data = {
+					c:_content,
+					f:$('input[name="from"]:checked').val(),
+					t:$('input[name="to"]:checked').val()
+				  };
+		$.post(_url,_data,function(data,s){
+			var _dobj = eval("("+data+")");
+			var _thtml = '';
+			var _shtml = '';
+			$.each(_dobj, function(i,d){
+				$.each(d,function(di,dd){
+					if(di==0){
+						_shtml += dd[0]+'<br />';
+					}
+					if(di==1){
+						$.each(dd, function(ti,td){
+							_thtml += '<span data-num="'+$.trim(td[1])+','+i+'">'+$.trim(td[0])+'</span>';
+						});
+					}	
+				});
+				_thtml += '<br />';
+			});
+			$('#trans_target').html(_thtml);	
+			hover_target(_shtml);
+			show_similar(_shtml);
+		});
+	});
+	$('#show_upload').click(function(){
+		$('#upload_form').slideToggle();	
+		$('#trans_source').slideToggle();	
+		return false;
+	});
+	
+	$('#detect').click(function(){
+			var _url = DATA_API;
+			var _content = $('.animated').val();
+			var _data = {c:_content,a:'detect' };
+			if($.trim(_content) == ''){
+					return false;
+			}
+			$.post(_url,_data,function(data,s){
+					var _dobj = eval("("+data+")");
+					var _lang = _dobj.responseData['language'];
+					//_lang = _lang=='zh' ? 'cn' : _lang;
+					$('input[name="from"]').each(function(){
+							if($(this).val() == _lang){
+									$(this).prop('checked',true).button("refresh");;
+							}else {
+									$(this).prop('checked',false).button("refresh");;
+							}
+					});
+			});
+			return false;
+	});
+
+	// default language
+	$('input[name="from"][value="en"]').prop('checked',true).button("refresh");;
+	$('input[name="to"][value="zh"]').prop('checked',true).button("refresh");;
+
+	/***************公用函数部分***************/
+	// 设置鼠标移入移出的样式
+	function hover_target(source){
+		var _p_array = source.split('<br />');
+		var $layer = $('#source_layer');
+		var $sobj = $('.animated');
+		$('#trans_target').find('span').hover(
+			function(){
+				$(this).addClass('trans_target_highlight');
+				var _tnum = $(this).data('num').split(',');
+				var _l = _tnum[2]; // 第几段
+				//console.info(_tnum);
+				var _shtml = '';
+				$.each(_p_array,function(pi,pd){
+					var _soure_array = pd.split(' ');
+					$.each(_soure_array,function(i,d){
+						//设置源语言开始标签
+						if(i==_tnum[0] && _l==pi){
+							_shtml += '<span class="trans_source_highlight">';
+						}
+						_shtml += d;
+						//设置源语言结束标签
+						if(i==_tnum[1] && _l==pi){
+							_shtml += '</span>';
+						}
+						_shtml += ' ';
+					});
+					_shtml += '<br />';
+				});
+				$layer.html(_shtml).css({'width':$sobj.width()});
+			},  //鼠标移入
+			function(){
+				$(this).removeClass('trans_target_highlight')
+				$layer.empty();	
+			}  //鼠标移出
+		)
+	}
+	// 显示例句
+	function show_similar(source){
+		$('#example').slideDown();
+		var _url = DATA_API;
+		var _content = $('.animated').val();
+		var _data = {c:_content,a:'similar',f:$('input[name="from"]:checked').val()};
+		if($.trim(_content) == ''){
+				return false;
+		}
+		$.post(_url,_data,function(data,s){
+				if($.trim(data) == 'null'){
+					$('#example_content').html('暂无例句');	
+					return false;
+				}
+				var _dobj = eval("("+data+")");
+				if(_dobj.Error!=''){
+					$('#example_content').html('暂无例句');	
+					return false;
+				}
+				var _html = '<ul>';
+				$.each(_dobj.Content,function(i,d){
+					if(i>0) {
+					_html += '<li><div>'+d.Source+'</div>';
+					_html += '<div>'+d.Translation+'</div></li>';
+					}
+				});
+				 _html += '</ul>';
+				$('#example_content').html(_html);
+		});
+	}
+});
